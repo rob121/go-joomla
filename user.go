@@ -43,7 +43,10 @@ func ValidUser(uname string) bool {
 
 func ValidCredentials(uname string, pass string) bool {
 
-	stmt, err := DB.Prepare(fmt.Sprintf("SELECT username,password,block FROM %susers WHERE username = ?", Prefix()))
+	qry := PrepareSQL(`SELECT username,password,block FROM #__users WHERE username = ?`)
+
+	stmt, err := DB.Prepare(qry)
+
 	defer stmt.Close()
 
 	if err != nil {

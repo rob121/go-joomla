@@ -4,9 +4,18 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
+	"strings"
 )
 
 var DB *sql.DB
+
+/*This method attaches an existing db connection*/
+
+func BindDB(db *sql.DB) {
+
+	DB = db
+
+}
 
 func Connect() error {
 
@@ -27,12 +36,17 @@ func Connect() error {
 	}
 
 	pingErr := DB.Ping()
-	
+
 	if pingErr != nil {
 		return pingErr
 	}
 
 	return nil
+
+}
+func PrepareSQL(qry string) {
+
+	return strings.Replace(qry, "#__", Prefix(), -1)
 
 }
 
