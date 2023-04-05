@@ -44,7 +44,7 @@ func Connect() error {
 	return nil
 
 }
-func PrepareSQL(qry string) {
+func PrepareSQL(qry string) string {
 
 	return strings.Replace(qry, "#__", Prefix(), -1)
 

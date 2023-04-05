@@ -38,7 +38,6 @@ func ValidUser(uname string) bool {
 		return true
 	}
 
-	return true
 }
 
 func ValidCredentials(uname string, pass string) bool {
